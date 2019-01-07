@@ -1,7 +1,9 @@
 let x=0;
+//figure out how to fix adding operations after equals.
 function insert(char){
   let p = document.getElementById("textview");
   let q = document.getElementById("storeddisplay");
+
   if(p.innerHTML=="0"){
     if(isNaN(char)==false){
       p.innerHTML = char;
@@ -12,7 +14,7 @@ function insert(char){
     }
   }else if(p.innerHTML!="0"){
     if(char=="+" && x==0 || char=="-" && x==0 || char=="*" && x==0 || char=="/" && x==0){
-      q.innerHTML+=p.innerHTML + char;
+      q.innerHTML+=p.innerHTML.replace(",", "") + char;
       x=1;
     }else if(isNaN(char)==false && x==0){
       p.innerHTML+=char;
@@ -37,10 +39,10 @@ function equals(){
   q.innerHTML += p.innerHTML;
   let answer = eval(q.innerHTML);
   q.innerHTML += "=";
-  p.innerHTML = answer;
+  p.innerHTML = answer.toLocaleString("en");
 }
 function posneg(){
-  let parentheses=[]
+  /*let parentheses=[]
   let p = document.getElementById("textview");
   let contents = p.innerHTML;
   if(contents.includes("-")){
@@ -69,5 +71,15 @@ function posneg(){
     p.innerHTML+=substring;
   }else if(contents.includes("-")==false && contents.includes("(")==false || contents.includes("-")==false && contents.includes(")")==false){
     p.innerHTML = "(-" + contents + ")";
+  }*/
+  let p = document.getElementById("textview")
+  let contents=p.innerHTML;
+  if(contents.includes("-")){
+    p.innerHTML=p.innerHTML.replace("(", "");
+    p.innerHTML=p.innerHTML.replace(")", "");
+    p.innerHTML=p.innerHTML.replace("-", "");
+  }else if(contents.includes("-")==false){
+    contents="(-" + contents + ")";
+    p.innerHTML=contents;
   }
 }

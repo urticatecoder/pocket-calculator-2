@@ -1,8 +1,12 @@
+*{
+  font-family:
+}
 html,body{
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  background: linear-gradient(to right, #4286f4, #ac41f4);
 }
 #keyboard{
   margin: 0 auto;
@@ -12,14 +16,14 @@ html,body{
   width:95%;
   height:2%;
   margin: 4px auto 0 auto;
-  background-color: white;
+  background-color: inherit;
   width: 1218px;
   text-align: right;
   padding-right: 10px;
 }
 #textview{
   width: 1214px;
-  height:10%;
+  height:100px;
   margin: 4px auto 0 auto;
   background-color: white;
   border-radius: 5px;
@@ -27,6 +31,7 @@ html,body{
   text-align: right;
   padding-right: 10px;
   font-size: 70px;
+  direction: rtl;
 }
 .button{
   width:150px;
