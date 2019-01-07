@@ -1,0 +1,51 @@
+html,body{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#keyboard{
+  margin: 0 auto;
+  padding: 0;
+}
+#storeddisplay{
+  width:95%;
+  height:2%;
+  margin: 4px auto 0 auto;
+  background-color: white;
+  width: 1218px;
+  text-align: right;
+  padding-right: 10px;
+}
+#textview{
+  width: 1214px;
+  height:10%;
+  margin: 4px auto 0 auto;
+  background-color: white;
+  border-radius: 5px;
+  border: 3px solid black;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 70px;
+}
+.button{
+  width:150px;
+  height:150px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 80px;
+}
+.rowspanbutton{
+  width:150px;
+  height:304px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 80px;
+}
+.zerobutton{
+  width:304px;
+  height:150px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 80px;
+}
