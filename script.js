@@ -24,7 +24,7 @@ function insert(char){
     }else if(x==1){
       p.innerHTML=char;
       x=0;
-    }else if(char=="(" || char==")"){
+    }else if(char == "."){
       p.innerHTML+=char;
     }
   }
