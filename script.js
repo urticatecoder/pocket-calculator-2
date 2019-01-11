@@ -10,25 +10,32 @@ function insert(char){
   if(p.innerHTML=="0"){
     if(isNaN(char)==false){
       p.innerHTML = char;
+      y=0;
     }else if(char=="+" || char=="*" || char=="/" || char=="-"){
       p.innerHTML = "0";
+      y=0;
     }else if(char=="(" || char==")" || char=="."){
       p.innerHTML = char;
+      y=0;
     }
   }else if(p.innerHTML!="0"){
     if(char=="+" && x==0 || char=="-" && x==0 || char=="*" && x==0 || char=="/" && x==0){
       q.innerHTML+=p.innerHTML + char;
       x=1;
+      y=0;
     }else if(isNaN(char)==false && x==0){
       p.innerHTML+=char;
       x=0;
+      y=0;
     }else if(char=="+" && x==1 || char=="-" && x==1 || char=="*" && x==1 || char=="/" && x==1){
-
+      y=0;
     }else if(x==1){
       p.innerHTML=char;
       x=0;
+      y=0;
     }else if(char == "."){
       p.innerHTML+=char;
+      y=0;
     }
   }
 }
@@ -45,11 +52,15 @@ function equals(){
   if(x==0){
     answer = eval(q.innerHTML);
   }else{}
+
   if(x==1){
     p.innerHTML="Error";
   }else if(answer==Infinity || answer==-Infinity){
     p.innerHTML="Error";
+  }else{
+    p.innerHTML=answer.toLocaleString("en");
   }
+  y=1;
   /*if(x==1){
     q.innerHTML=q.innerHTML;
   }else if(x==0){
@@ -99,12 +110,30 @@ function posneg(){
   }*/
   let p = document.getElementById("textview")
   let contents=p.innerHTML;
-  if(contents.includes("-")){
-    p.innerHTML=p.innerHTML.replace("(", "");
-    p.innerHTML=p.innerHTML.replace(")", "");
-    p.innerHTML=p.innerHTML.replace("-", "");
-  }else if(contents.includes("-")==false){
-    contents="(-" + contents + ")";
-    p.innerHTML=contents;
+  if (p.innerHTML == "0"){
+
+  }else if(p.innerHTML!="0"){
+    if(contents.includes("-")){
+      p.innerHTML=p.innerHTML.replace("(", "");
+      p.innerHTML=p.innerHTML.replace(")", "");
+      p.innerHTML=p.innerHTML.replace("-", "");
+    }else if(contents.includes("-")==false){
+      contents="(-" + contents + ")";
+      p.innerHTML=contents;
+    }
+  }
+}
+let z = 0;
+function percent(){
+  let p = document.getElementById("textview");
+  let value = Number(p.innerHTML);
+  if(x==0){
+    let percentValue = value/100;
+    p.innerHTML = percentValue;
+    x=1;
+  }else if(x==1){
+    let newValue=value*100;
+    p.innerHTML=newValue;
+    x=0;
   }
 }
