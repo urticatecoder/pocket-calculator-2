@@ -1,20 +1,23 @@
+//flag to see if an operator has been pressed
 let x=0;
+let y=0;
 //figure out how to fix adding operations after equals.
 function insert(char){
+  //refers to my main display
   let p = document.getElementById("textview");
+  //refers to my history display
   let q = document.getElementById("storeddisplay");
-
   if(p.innerHTML=="0"){
     if(isNaN(char)==false){
       p.innerHTML = char;
     }else if(char=="+" || char=="*" || char=="/" || char=="-"){
-      p.innerHTML == "0";
+      p.innerHTML = "0";
     }else if(char=="(" || char==")" || char=="."){
       p.innerHTML = char;
     }
   }else if(p.innerHTML!="0"){
     if(char=="+" && x==0 || char=="-" && x==0 || char=="*" && x==0 || char=="/" && x==0){
-      q.innerHTML+=p.innerHTML.replace(",", "") + char;
+      q.innerHTML+=p.innerHTML + char;
       x=1;
     }else if(isNaN(char)==false && x==0){
       p.innerHTML+=char;
@@ -32,14 +35,36 @@ function insert(char){
 function clr(){
   document.getElementById("textview").innerHTML=0;
   document.getElementById("storeddisplay").innerHTML="";
+  x=0;
 }
 function equals(){
   let p = document.getElementById("textview");
   let q = document.getElementById("storeddisplay");
+  q.innerHTML+=p.innerHTML;
+  let answer;
+  if(x==0){
+    answer = eval(q.innerHTML);
+  }else{}
+  if(x==1){
+    p.innerHTML="Error";
+  }else if(answer==Infinity || answer==-Infinity){
+    p.innerHTML="Error";
+  }
+  /*if(x==1){
+    q.innerHTML=q.innerHTML;
+  }else if(x==0){
+    q.innerHTML+=p.innerHTML;
+  }
   q.innerHTML += p.innerHTML;
-  let answer = eval(q.innerHTML);
+  if(p.innerHTML=="Infinity" || p.innerHTML==="-Infinity") {
+    p.innerHTML="Error";
+  }else if(x==1){
+    p.innerHTML="Error";
+  }else if(isNaN(answer)==false){
+    p.innerHTML=answer;
+  }
   q.innerHTML += "=";
-  p.innerHTML = answer.toLocaleString("en");
+  p.innerHTML = p.innerHTML.toLocaleString("en");*/
 }
 function posneg(){
   /*let parentheses=[]
