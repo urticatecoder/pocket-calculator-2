@@ -1,41 +1,113 @@
 //flag to see if an operator has been pressed
 let x=0;
+//flag to see if equals has been pressed
 let y=0;
 //figure out how to fix adding operations after equals.
 function insert(char){
-  //refers to my main display
   let p = document.getElementById("textview");
-  //refers to my history display
   let q = document.getElementById("storeddisplay");
+  //if 0 is in the textview
   if(p.innerHTML=="0"){
-    if(isNaN(char)==false){
+    //if you press a number and you have not just hit equals
+    if(isNaN(char)==false && y==0){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML = char;
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       y=0;
-    }else if(char=="+" || char=="*" || char=="/" || char=="-"){
+      console.log("1")
+    //if you press an operator and 0 is in textview and you have not just hit equals
+    }else if(char=="+" && y==0 || char=="*" && y==0 || char=="/" && y==0 || char=="-" && y==0){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML = "0";
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       y=0;
-    }else if(char=="(" || char==")" || char=="."){
+      console.log("2")
+    //if you press the decimal point and have not just hit equals
+    }else if(char=="." && y==0){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML = char;
       y=0;
+      console.log("3")
+    //if you have just hit equals and you press an operator
+    }else if(y==1 && char=="+" || char == "-" && y==1 || char=="*" && y==1 ||char=="/" && y==1){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
+      q.innerHTML=p.innerHTML + char;
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
+      y=0
+      x=1
+      console.log("4")
+    //if you have just hit equals and you press a number
+    }else if(y==1 && isNaN(char)==false){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
+      q.innerHTML = "";
+      p.innerHTML = char
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
+      y=0;
+      x=0;
+      console.log("5")
     }
+  //if what's in textview is not 0
   }else if(p.innerHTML!="0"){
-    if(char=="+" && x==0 || char=="-" && x==0 || char=="*" && x==0 || char=="/" && x==0){
-      q.innerHTML+=p.innerHTML + char;
+    //if you press an operator and have not just pressed an operator and have not just pressed equals
+    if(char=="+" && x==0 && y==0 || char=="-" && x==0 && y==0 || char=="*" && x==0 && y==0 || char=="/" && x==0 && y==0){
+      q.innerHTML+=p.innerHTML.replace(/,/g, "") + char;
       x=1;
       y=0;
-    }else if(isNaN(char)==false && x==0){
+      console.log("6")
+    //if you press a number and have not just pressed an operator and have not just pressed equals
+    }else if(isNaN(char)==false && x==0 && y==0 && p.innerHTML.includes(".")==false){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML+=char;
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       x=0;
       y=0;
-    }else if(char=="+" && x==1 || char=="-" && x==1 || char=="*" && x==1 || char=="/" && x==1){
+      console.log("7")
+    //if you press an operator and have just pressed an operator and have not just pressed equals
+    }else if(char=="+" && x==1 && y==0 && p.innerHTML.includes(".")==false|| char=="-" && x==1 && y==0 && p.innerHTML.includes(".")==false|| char=="*" && x==1 && y==0 && p.innerHTML.includes(".")==false|| char=="/" && x==1 && y==0 && p.innerHTML.includes(".")==false){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       y=0;
-    }else if(x==1){
+      console.log("8")
+    //if you press anything and have just pressed an operator and have not just pressed equals
+    }else if(x==1 && y==0 && char!="." && char!= "+" && char!="-" && char!="*" && char!="/"){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML=char;
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       x=0;
       y=0;
-    }else if(char == "."){
+      console.log("9")
+    //if you press the decimal point and have not just pressed equals
+    }else if(x==1 && y==0 && char=="."){
+      p.innerHTML=char;
+      y=0;
+      x=0;
+    }else if(char == "." && y==0 && p.innerHTML.includes(".")==false){
       p.innerHTML+=char;
       y=0;
+      x=0;
+      console.log("10")
+    //if you have just pressed equals and you press an operator
+    }else if(y==1 && char=="+" || char == "-" && y==1 || char=="*" && y==1 ||char=="/" && y==1){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
+      q.innerHTML=p.innerHTML + char;
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
+      y=0
+      x=1
+      console.log("11")
+    //if you have just pressed equals and you press a number
+    }else if(y==1 && isNaN(char)==false){
+      p.innerHTML = p.innerHTML.replace(/,/g, "");
+      q.innerHTML = "";
+      p.innerHTML = char
+      p.innerHTML = Number(p.innerHTML).toLocaleString("en");
+      y=0;
+      x=0;
+      console.log("12")
+    }else if(p.innerHTML.includes(".") && char!="+" && char!="-" && char!="/" && char!="*"){
+      p.innerHTML+=char;
+      x=0;
+      y=0;
+      console.log("13")
     }
   }
 }
@@ -43,28 +115,44 @@ function clr(){
   document.getElementById("textview").innerHTML=0;
   document.getElementById("storeddisplay").innerHTML="";
   x=0;
+  y=0;
 }
 function equals(){
   let p = document.getElementById("textview");
   let q = document.getElementById("storeddisplay");
-  if(p.innerHTML!="0"){
-    q.innerHTML+=p.innerHTML;
-  }
-  let answer;
-  if(x==0){
-    answer = eval(q.innerHTML);
-  }else{}
+  if (y==0){
+    if(p.innerHTML!="0" && q.innerHTML.includes("/")==false){
+      q.innerHTML+=p.innerHTML.replace(/,/g, "");
+    }else if(p.innerHTML == "0" && q.innerHTML.includes("/")){
+      q.innerHTML+=p.innerHTML.replace(/,/g, "");
+    }
+    let answer;
+    if(x==0 && p.innerHTML!="0"){
+      answer = eval(q.innerHTML);
+    }else if(p.innerHTML == "0" && q.innerHTML.includes("/")==false){
+      answer = 0;
+    }else if(p.innerHTML == "0" && q.innerHTML.includes("/")){
+      answer = eval(q.innerHTML);
+    }else{}
+    if(x==1){
+      p.innerHTML="Error";
+    }else if(answer==Infinity || answer==-Infinity){
+      p.innerHTML="Error";
+    }else if(isNaN(answer)){
+      p.innerHTML="Error";
+    }else if(String(answer).includes(".")){
+      console.log(answer);
+      let substring = String(answer).substr(String(answer).indexOf("."));
+      p.innerHTML = Number(String(answer).replace(substring, "")).toLocaleString("en");
+      p.innerHTML += substring;
+    }else{
+      p.innerHTML = answer.toLocaleString("en");
+    }
+    y=1;
+  }else if(y==1){
 
-  if(x==1){
-    p.innerHTML="Error";
-  }else if(answer==Infinity || answer==-Infinity){
-    p.innerHTML="Error";
-  }else if(p.innerHTML == "0"){
-    console.log("itbezero");
-  }else{
-    p.innerHTML=answer.toLocaleString("en");
   }
-  y=1;
+
   /*if(x==1){
     q.innerHTML=q.innerHTML;
   }else if(x==0){
@@ -127,11 +215,25 @@ function posneg(){
     }
   }
 }
-let z = 0;
+let z = 0; //flag to see if percent button has already been pressed
 function percent(){
   let p = document.getElementById("textview");
   let value = Number(p.innerHTML);
-  if(z==0){
+  let contentsWithoutParentheses;
+  if(p.innerHTML.includes("-")){
+    contentsWithoutParentheses = p.innerHTML.replace(/[{()}]/g, '');
+    contentsWithoutParentheses = contentsWithoutParentheses.replace("-", "");
+  }
+
+  if(p.innerHTML.includes("-") && z==0){
+    let percentValue = Number(contentsWithoutParentheses) / 100;
+    p.innerHTML = "(-" + percentValue + ")";
+    z=1;
+  }else if(p.innerHTML.includes("-") && z==1){
+    let percentValue = Number(contentsWithoutParentheses) * 100;
+    p.innerHTML = "(-" + percentValue + ")";
+    z=0;
+  }else if(z==0){
     let percentValue = value/100;
     p.innerHTML = percentValue;
     z=1;
