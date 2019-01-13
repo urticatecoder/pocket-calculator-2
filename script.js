@@ -2,10 +2,16 @@
 let x=0;
 //flag to see if equals has been pressed
 let y=0;
+//flag to see if it is in scientific notation
+let w=0;
 //figure out how to fix adding operations after equals.
 function insert(char){
   let p = document.getElementById("textview");
   let q = document.getElementById("storeddisplay");
+  if(String(p.innerHTML).includes("+21")){
+    p.innerHTML = "Error: Overflow";
+    console.log("thing");
+  }
   //if 0 is in the textview
   if(p.innerHTML=="0"){
     //if you press a number and you have not just hit equals
@@ -55,7 +61,7 @@ function insert(char){
       y=0;
       console.log("6")
     //if you press a number and have not just pressed an operator and have not just pressed equals
-    }else if(isNaN(char)==false && x==0 && y==0 && p.innerHTML.includes(".")==false){
+  }else if(isNaN(char)==false && x==0 && y==0 && p.innerHTML.includes(".")==false && p.innerHTML!="Error: Overflow"){
       p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML+=char;
       p.innerHTML = Number(p.innerHTML).toLocaleString("en");
@@ -77,15 +83,16 @@ function insert(char){
       y=0;
       console.log("9")
     //if you press the decimal point and have not just pressed equals
-    }else if(x==1 && y==0 && char=="."){
+    }else if(x==1 && y==0 && char=="." && p.innerHTML.includes(".")==false){
       p.innerHTML=char;
       y=0;
       x=0;
+      console.log("10")
     }else if(char == "." && y==0 && p.innerHTML.includes(".")==false){
       p.innerHTML+=char;
       y=0;
       x=0;
-      console.log("10")
+      console.log("11")
     //if you have just pressed equals and you press an operator
     }else if(y==1 && char=="+" || char == "-" && y==1 || char=="*" && y==1 ||char=="/" && y==1){
       p.innerHTML = p.innerHTML.replace(/,/g, "");
@@ -93,7 +100,7 @@ function insert(char){
       p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       y=0
       x=1
-      console.log("11")
+      console.log("12")
     //if you have just pressed equals and you press a number
     }else if(y==1 && isNaN(char)==false){
       p.innerHTML = p.innerHTML.replace(/,/g, "");
@@ -102,13 +109,33 @@ function insert(char){
       p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       y=0;
       x=0;
-      console.log("12")
-    }else if(p.innerHTML.includes(".") && char!="+" && char!="-" && char!="/" && char!="*"){
+      console.log("13")
+    }else if(p.innerHTML.includes(".") && char!="+" && char!="-" && char!="/" && char!="*" && p.innerHTML.includes("e")==false && char!="."){
       p.innerHTML+=char;
       x=0;
       y=0;
-      console.log("13")
+      console.log("14")
+    }else if(p.innerHTML.includes("e+") && isNaN(char)==false && p.innerHTML!="Error: Overflow" && p.innerHTML!="1.00000e+0"){
+      let substring = p.innerHTML.substr(p.innerHTML.indexOf("+"));
+      if(Number(substring)>=9){
+        p.innerHTML=p.innerHTML.replace(substring, "");
+        substring=Number(substring);
+        substring++;
+        p.innerHTML+=substring;
+      }
+      //p.innerHTML= Number(String(Number(p.innerHTML)) + char).toExponential();
+      x=0;
+      y=0;
+      console.log(Number(p.innerHTML));
+    }else if(p.innerHTML == "Error: Overflow"){
+      p.innerHTML = p.innerHTML;
+    }else if(p.innerHTML.includes("e-") && char==9){
+      p.innerHTML = p.innerHTML;
     }
+  }
+  let contents=String(p.innerHTML);
+  if((contents.replace(/,/g, "")).length>9 && contents!="Error: Overflow"){
+    p.innerHTML = Number(contents.replace(/,/g, "")).toExponential(5);
   }
 }
 function clr(){
@@ -147,6 +174,10 @@ function equals(){
       p.innerHTML += substring;
     }else{
       p.innerHTML = answer.toLocaleString("en");
+    }
+    let contents=String(p.innerHTML);
+    if((contents.replace(/,/g, "")).length>9){
+      p.innerHTML = Number(contents.replace(/,/g, "")).toExponential(5);
     }
     y=1;
   }else if(y==1){
