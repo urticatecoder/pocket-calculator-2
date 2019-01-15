@@ -70,6 +70,8 @@ function insert(char){
       console.log("7")
     //if you press an operator and have just pressed an operator and have not just pressed equals
     }else if(char=="+" && x==1 && y==0 && p.innerHTML.includes(".")==false|| char=="-" && x==1 && y==0 && p.innerHTML.includes(".")==false|| char=="*" && x==1 && y==0 && p.innerHTML.includes(".")==false|| char=="/" && x==1 && y==0 && p.innerHTML.includes(".")==false){
+      console.log(q.innerHTML[q.innerHTML.length-1]);
+      q.innerHTML=q.innerHTML.replace(q.innerHTML[q.innerHTML.length-1], char);
       p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML = Number(p.innerHTML).toLocaleString("en");
       y=0;
@@ -152,6 +154,8 @@ function equals(){
       q.innerHTML+=p.innerHTML.replace(/,/g, "");
     }else if(p.innerHTML == "0" && q.innerHTML.includes("/")){
       q.innerHTML+=p.innerHTML.replace(/,/g, "");
+    }else if(p.innerHTML != "0" && q.innerHTML.includes("/")){
+      q.innerHTML+=p.innerHTML.replace(/,/g, "");
     }
     let answer;
     if(x==0 && p.innerHTML!="0"){
@@ -183,22 +187,6 @@ function equals(){
   }else if(y==1){
 
   }
-
-  /*if(x==1){
-    q.innerHTML=q.innerHTML;
-  }else if(x==0){
-    q.innerHTML+=p.innerHTML;
-  }
-  q.innerHTML += p.innerHTML;
-  if(p.innerHTML=="Infinity" || p.innerHTML==="-Infinity") {
-    p.innerHTML="Error";
-  }else if(x==1){
-    p.innerHTML="Error";
-  }else if(isNaN(answer)==false){
-    p.innerHTML=answer;
-  }
-  q.innerHTML += "=";
-  p.innerHTML = p.innerHTML.toLocaleString("en");*/
 }
 function posneg(){
   /*let parentheses=[]
@@ -256,21 +244,10 @@ function percent(){
     contentsWithoutParentheses = contentsWithoutParentheses.replace("-", "");
   }
 
-  if(p.innerHTML.includes("-") && z==0){
+  if(p.innerHTML.includes("-")){
     let percentValue = Number(contentsWithoutParentheses) / 100;
     p.innerHTML = "(-" + percentValue + ")";
-    z=1;
-  }else if(p.innerHTML.includes("-") && z==1){
-    let percentValue = Number(contentsWithoutParentheses) * 100;
-    p.innerHTML = "(-" + percentValue + ")";
-    z=0;
-  }else if(z==0){
-    let percentValue = value/100;
-    p.innerHTML = percentValue;
-    z=1;
-  }else if(z==1){
-    let newValue=value*100;
-    p.innerHTML=newValue;
-    z=0;
+  }else{
+    p.innerHTML = Number(p.innerHTML)/100
   }
 }

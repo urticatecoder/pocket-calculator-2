@@ -8,21 +8,35 @@ html,body{
   padding: 0;
   background: linear-gradient(to right, #4286f4, #ac41f4);
 }
+.spaceadder{
+  height: 20px;
+}
+.everything{
+  display: block;
+  position: absolute;
+  top: 13%;
+  left: 18.5%;
+  background: linear-gradient(to left, #4286f4, #ac41f4);
+  width: 800px;
+  border: 5px solid black;
+  border-radius: 15px;
+  box-shadow: 5px 10px ;
+}
 #keyboard{
   margin: 0 auto;
   padding: 0;
 }
 #storeddisplay{
   width:95%;
-  height:2%;
+  height:20px;
   margin: 4px auto 0 auto;
   background-color: inherit;
-  width: 718px;
+  width: 715px;
   text-align: right;
   padding-right: 10px;
 }
 #textview{
-  width: 718px;
+  width: 710px;
   height:100px;
   margin: 4px auto 0 auto;
   background-color: white;
@@ -38,6 +52,7 @@ html,body{
   margin: 0px;
   padding: 0px;
   font-size: 50px;
+  border-radius: 50%;
 }
 .rowspanbutton{
   width:100px;
@@ -45,6 +60,7 @@ html,body{
   margin: 0px;
   padding: 0px;
   font-size: 50px;
+  border-radius: 50%;
 }
 .zerobutton{
   width:204px;
@@ -52,4 +68,5 @@ html,body{
   margin: 0px;
   padding: 0px;
   font-size: 50px;
+  border-radius: 50%;
 }
