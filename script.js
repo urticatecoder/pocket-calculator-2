@@ -165,6 +165,7 @@ function equals(){
     }else if(p.innerHTML == "0" && q.innerHTML.includes("/")){
       answer = eval(q.innerHTML);
     }else{}
+    console.log(answer);
     if(x==1){
       p.innerHTML="Error";
     }else if(answer==Infinity || answer==-Infinity){
@@ -234,7 +235,6 @@ function posneg(){
     }
   }
 }
-let z = 0; //flag to see if percent button has already been pressed
 function percent(){
   let p = document.getElementById("textview");
   let value = Number(p.innerHTML);
@@ -250,4 +250,51 @@ function percent(){
   }else{
     p.innerHTML = Number(p.innerHTML)/100
   }
+}
+
+function niceToHave(value){
+  let p = document.getElementById("textview");
+  let q = document.getElementById("storeddisplay");
+    if(value=="Math.PI" && x==1){
+      p.innerHTML = 3.1415926
+      x=0;
+      y=0;
+    }else if(value=="!" && x==0){
+      let contents = Number(p.innerHTML);
+      for (let i=contents-1; i>0; i--){
+        contents=contents*i;
+      }
+      console.log(contents);
+      p.innerHTML=contents;
+      x=0;
+      y=0;
+    }else if(value=="tan" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=Math.tan(contents);
+      p.innerHTML=contents.toFixed(5);
+    }else if(value=="cos" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=Math.cos(contents);
+      p.innerHTML=contents.toFixed(5);
+    }else if(value=="sin" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=Math.sin(contents);
+      p.innerHTML=contents.toFixed(5);
+    }else if(value=="squared" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=contents**2;
+      p.innerHTML=contents;
+    }else if(value=="cubed" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=contents**3;
+      p.innerHTML=contents;
+    }else if(value=="sqrt" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=Math.sqrt(contents);
+      p.innerHTML=contents;
+    }else if(value=="cbrt" && x==0){
+      let contents=Number(p.innerHTML);
+      contents=Math.cbrt(contents);
+      p.innerHTML=contents;
+    }
 }
