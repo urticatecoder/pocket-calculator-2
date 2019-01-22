@@ -61,7 +61,7 @@ function insert(char){
       y=0;
       console.log("6")
     //if you press a number and have not just pressed an operator and have not just pressed equals
-  }else if(isNaN(char)==false && x==0 && y==0 && p.innerHTML.includes(".")==false && p.innerHTML!="Error: Overflow"){
+  }else if(isNaN(char)==false && x==0 && y==0 && p.innerHTML.includes(".")==false && p.innerHTML!="Error: Overflow" && p.innerHTML!="3.1415926"){
       p.innerHTML = p.innerHTML.replace(/,/g, "");
       p.innerHTML+=char;
       p.innerHTML = Number(p.innerHTML).toLocaleString("en");
@@ -85,7 +85,7 @@ function insert(char){
       y=0;
       console.log("9")
     //if you press the decimal point and have not just pressed equals
-    }else if(x==1 && y==0 && char=="." && p.innerHTML.includes(".")==false){
+    }else if(x==1 && y==0 && char=="."){
       p.innerHTML=char;
       y=0;
       x=0;
@@ -112,7 +112,7 @@ function insert(char){
       y=0;
       x=0;
       console.log("13")
-    }else if(p.innerHTML.includes(".") && char!="+" && char!="-" && char!="/" && char!="*" && p.innerHTML.includes("e")==false && char!="."){
+    }else if(p.innerHTML.includes(".") && char!="+" && char!="-" && char!="/" && char!="*" && p.innerHTML.includes("e")==false && char!="." && p.innerHTML!=3.1415926){
       p.innerHTML+=char;
       x=0;
       y=0;
@@ -190,36 +190,6 @@ function equals(){
   }
 }
 function posneg(){
-  /*let parentheses=[]
-  let p = document.getElementById("textview");
-  let contents = p.innerHTML;
-  if(contents.includes("-")){
-    for(let i=0;i<contents.length;i++){
-      if(contents[i]=="(" || contents[i]==")"){
-        parentheses.push(i);
-      }else if(isNaN(contents[i])==false){
-        parentheses.push("marker");
-      }
-    }
-    let substring = contents.substr(parentheses[parentheses.indexOf("marker")-1], parentheses[parentheses.lastIndexOf("marker")+1]);
-    let substring2=substring.replace("(-", "");
-    substring2=substring2.replace(")", "");
-    p.innerHTML=contents.replace(substring, substring2);
-  }else if(contents.includes("-")==false && contents.includes("(")){
-    for(let i=0;i<contents.length;i++){
-      if(contents[i]=="("){
-        parentheses.push(i);
-      }else if(isNaN(contents[i])==false){
-        parentheses.push("marker");
-      }
-    }
-    let substring = contents.substr(parentheses[parentheses.indexOf("marker")-1]+1);
-    p.innerHTML=contents.replace(substring, "");
-    substring = "(-" + substring + ")";
-    p.innerHTML+=substring;
-  }else if(contents.includes("-")==false && contents.includes("(")==false || contents.includes("-")==false && contents.includes(")")==false){
-    p.innerHTML = "(-" + contents + ")";
-  }*/
   let p = document.getElementById("textview")
   let contents=p.innerHTML;
   if (p.innerHTML == "0"){
@@ -243,7 +213,6 @@ function percent(){
     contentsWithoutParentheses = p.innerHTML.replace(/[{()}]/g, '');
     contentsWithoutParentheses = contentsWithoutParentheses.replace("-", "");
   }
-
   if(p.innerHTML.includes("-")){
     let percentValue = Number(contentsWithoutParentheses) / 100;
     p.innerHTML = "(-" + percentValue + ")";
@@ -255,7 +224,7 @@ function percent(){
 function niceToHave(value){
   let p = document.getElementById("textview");
   let q = document.getElementById("storeddisplay");
-    if(value=="Math.PI" && x==1){
+    if(value=="Math.PI" && x==1 || value=="Math.PI" && p.innerHTML=="0"){
       p.innerHTML = 3.1415926
       x=0;
       y=0;
