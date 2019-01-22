@@ -235,6 +235,9 @@ function niceToHave(value){
       }
       console.log(contents);
       p.innerHTML=contents;
+      if(String(p.innerHTML).length > 9){
+        p.innerHTML=Number(p.innerHTML).toExponential(5);
+      }
       x=0;
       y=0;
     }else if(value=="tan" && x==0){
