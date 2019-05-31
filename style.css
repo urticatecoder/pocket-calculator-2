@@ -14,8 +14,8 @@ html,body{
 .everything{
   display: block;
   position: absolute;
-  top: 13%;
-  left: 18.5%;
+  top: 13vh;
+  left: 18.5vw;
   background: linear-gradient(to left, #4286f4, #ac41f4);
   width: 800px;
   border: 5px solid black;
