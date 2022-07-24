@@ -1,31 +1,63 @@
-*{
-  font-family:
+:root {
+  --gradient: linear-gradient(45deg, #d98989, #d9b289, #d9d589, #bad989, #89d98c, #89d9c0, #89ced9, #89a8d9, #8c89d9, #b289d9, #d989d5, #d989b6, #d98989);
 }
-html,body{
+
+html, body{
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #4286f4, #ac41f4);
 }
-.spaceadder{
-  height: 20px;
+
+body {
+  background: var(--gradient);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
 }
-.everything{
-  display: block;
-  position: absolute;
-  top: 13vh;
-  left: 18.5vw;
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+
+  25% {
+    background-position: 25% 75%;
+  }
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+  75% {
+    background-position: 75% 25%;
+  }
+
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#calculator{
   background: linear-gradient(to left, #4286f4, #ac41f4);
-  width: 80vw;
+  padding: 20px;
   border: 5px solid black;
   border-radius: 15px;
-  box-shadow: 10px 10px 10px #9b9da0;
 }
+
 #keyboard{
   margin: 0 auto;
   padding: 0;
 }
+
 #storeddisplay{
   width:95%;
   height:20px;
@@ -35,6 +67,7 @@ html,body{
   text-align: right;
   padding-right: 10px;
 }
+
 #textview{
   width: 710px;
   height:100px;
@@ -46,6 +79,17 @@ html,body{
   padding-right: 10px;
   font-size: 80px;
 }
+
+.falsebutton {
+  width:100px;
+  height:100px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 50px;
+  border-radius: 50%;
+  background: #8c8c8c;
+}
+
 .button{
   width:100px;
   height:100px;
@@ -54,7 +98,70 @@ html,body{
   font-size: 50px;
   border-radius: 50%;
 }
+
+.button:hover {
+  cursor: pointer;
+}
+
+.numeric{
+  background: #c6c6c6;
+}
+
+.numeric:hover {
+  background: #b8b8b8;
+}
+
+.numeric:active {
+  background: #a6a6a6;
+}
+
+.darkgrey {
+  background: #8c8c8c;
+}
+
+.darkgrey:hover {
+  background: #636363;
+}
+
+.darkgrey:active {
+  background: #2e2e2e;
+  color: white;
+}
+
+.darkpurp {
+  background: #373972;
+}
+
+.darkpurp:hover {
+  background: #36107d;
+}
+
+.darkpurp:active {
+  background: #270b5c;
+  color: white;
+}
+
+.light-purple-button {
+  width:100px;
+  height:100px;
+  margin: 0px;
+  padding: 0px;
+  font-size: 50px;
+  border-radius: 50%;
+  background-color: #b3b2ff
+}
+
+.light-purple-button:hover {
+  cursor: pointer;
+  background: #8239db;
+}
+
+.light-purple-button:active {
+  background: #3d0680;
+}
+
 .rowspanbutton{
+  background-color: #b3b2ff;
   width:100px;
   height:204px;
   margin: 0px;
@@ -62,6 +169,16 @@ html,body{
   font-size: 50px;
   border-radius: 50%;
 }
+
+.rowspanbutton:hover{
+  cursor: pointer;
+  background: #8239db;
+}
+
+.rowspanbutton:active {
+  background: #3d0680;
+}
+
 .zerobutton{
   width:204px;
   height:100px;
@@ -70,6 +187,11 @@ html,body{
   font-size: 50px;
   border-radius: 50%;
 }
+
+.zerobutton{
+  cursor: pointer;
+}
+
 #tan{
   width:300px;
   height:100px;
@@ -77,4 +199,14 @@ html,body{
   padding: 0px;
   font-size: 50px;
   border-radius: 50%;
+  background: #b3b2ff;
+}
+
+#tan:hover {
+  cursor: pointer;
+  background: #8239db;
+}
+
+#tan:active {
+  background: #3d0680;
 }

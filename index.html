@@ -6,57 +6,62 @@
     <script src="script.js" type="text/javascript"></script>
   </head>
   <body>
-    <div class="everything">
-      <div id="storeddisplay"></div>
-      <div id="textview">0</div>
-      <div id="keyboard">
-        <table id="keyboard">
-          <tr>
-            <td rowspan="2"><button class="rowspanbutton" style="background-color: #b3b2ff" onclick="niceToHave('squared')">x<sup>2</sup></button></td>
-            <td rowspan="2"><button class="rowspanbutton" style="background-color: #b3b2ff" onclick="niceToHave('sqrt')">√x</button></td>
-            <td><button class="button" style="background-color: #b3b2ff" onclick="niceToHave('!')">x!</button></td>
-            <td><button class="button" style="background-color: #8c8c8c" onclick="clr()">C</button></td>
-            <td><button class="button" style="background-color: #8c8c8c" onclick="posneg()">+/-</button></td>
-            <td><button class="button" style="background-color: #8c8c8c" onclick="percent()">%</button></td>
-            <td><button class="button" style="background-color: #373972" onclick="insert('/')">÷</button></td>
-            <!--<td><button class="button" style="background-color: #373972">←</button></td>-->
-          </tr>
-          <tr>
-            <td><button class="button" style="background-color: #b3b2ff" onclick="niceToHave('Math.PI')">π</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(1)">1</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(2)">2</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(3)">3</button></td>
-            <td><button class="button" style="background-color: #373972" onclick="insert('*')">*</button></td>
-            <!--<td rowspan="2"><button class="rowspanbutton" style="background-color: #373972" onclick="insert('(')">(</button></td>-->
-          </tr>
-          <tr>
-            <td rowspan="2"><button class="rowspanbutton" style="background-color: #b3b2ff;" onclick="niceToHave('cubed')">x<sup>3</sup></button></td>
-            <td rowspan="2"><button class="rowspanbutton" style="background-color: #b3b2ff;" onclick="niceToHave('cbrt')"><sup>3</sup>√</button></td>
-            <td><button class="button" style="font-size: 40px; background-color: #b3b2ff;" onclick="niceToHave('sin')">SIN</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(4)">4</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(5)">5</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(6)">6</button></td>
-            <td><button class="button" style="background-color: #373972" onclick="insert('+')">+</button></td>
-          </tr>
-          <tr>
-            <td><button class="button" style="font-size: 40px; background-color: #b3b2ff;" onclick="niceToHave('cos')">COS</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(7)">7</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(8)">8</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert(9)">9</button></td>
-            <td><button class="button" style="background-color: #373972" onclick="insert('-')">-</button></td>
-            <!--<td rowspan="2"><button class="rowspanbutton" style="background-color: #373972" onclick="insert(')')">)</button></td>-->
-          </tr>
-          <tr>
-            <!--<td><button class="button" style="background-color: #b3b2ff;">x<sup>y</sup></button></td>-->
-            <!--<td><button class="button" style="background-color: #b3b2ff;"><sup>y</sup>√</button></td>-->
-            <td colspan="3"><button id="tan" style="font-size: 40px; background-color: #b3b2ff;" onclick="niceToHave('tan')">TAN</button></td>
-            <td colspan="2"><button class="zerobutton" style="background-color: #c6c6c6" onclick="insert(0)">0</button></td>
-            <td><button class="button" style="background-color: #c6c6c6" onclick="insert('.')">.</button></td>
-            <td><button class="button" style="background-color: #373972" onclick="equals()">=</button></td>
-          </tr>
-        </table>
+    <div id = "wrapper">
+
+
+      <div id="calculator">
+        <div id="storeddisplay"></div>
+        <div id="textview">0</div>
+        <div id="keyboard">
+          <table id="keyboard">
+            <tr>
+              <td rowspan="2"><button class="rowspanbutton" onclick="niceToHave('squared')">x<sup>2</sup></button></td>
+              <td rowspan="2"><button class="rowspanbutton" onclick="niceToHave('sqrt')">√x</button></td>
+              <td><button class="button light-purple-button" onclick="niceToHave('!')">x!</button></td>
+              <td><button class="button darkgrey" onclick="clr()">C</button></td>
+              <td><button class="button darkgrey" onclick="posneg()">+/-</button></td>
+              <td><button class="falsebutton"></button></td>
+              <td><button class="button darkpurp" onclick="insert('/')">÷</button></td>
+              <!--<td><button class="button" style="background-color: #373972">←</button></td>-->
+            </tr>
+            <tr>
+              <td><button class="button light-purple-button" onclick="niceToHave('Math.PI')">π</button></td>
+              <td><button class="button numeric" onclick="insert(1)">1</button></td>
+              <td><button class="button numeric" onclick="insert(2)">2</button></td>
+              <td><button class="button numeric" onclick="insert(3)">3</button></td>
+              <td><button class="button darkpurp" onclick="insert('*')">*</button></td>
+              <!--<td rowspan="2"><button class="rowspanbutton" style="background-color: #373972" onclick="insert('(')">(</button></td>-->
+            </tr>
+            <tr>
+              <td rowspan="2"><button class="rowspanbutton" onclick="niceToHave('cubed')">x<sup>3</sup></button></td>
+              <td rowspan="2"><button class="rowspanbutton" onclick="niceToHave('cbrt')"><sup>3</sup>√</button></td>
+              <td><button class="button light-purple-button" style="font-size: 40px;" onclick="niceToHave('sin')">SIN</button></td>
+              <td><button class="button numeric" onclick="insert(4)">4</button></td>
+              <td><button class="button numeric" onclick="insert(5)">5</button></td>
+              <td><button class="button numeric" onclick="insert(6)">6</button></td>
+              <td><button class="button darkpurp" onclick="insert('+')">+</button></td>
+            </tr>
+            <tr>
+              <td><button class="button light-purple-button" style="font-size: 40px;" onclick="niceToHave('cos')">COS</button></td>
+              <td><button class="button numeric" onclick="insert(7)">7</button></td>
+              <td><button class="button numeric" onclick="insert(8)">8</button></td>
+              <td><button class="button numeric" onclick="insert(9)">9</button></td>
+              <td><button class="button darkpurp" onclick="insert('-')">-</button></td>
+              <!--<td rowspan="2"><button class="rowspanbutton" style="background-color: #373972" onclick="insert(')')">)</button></td>-->
+            </tr>
+            <tr>
+              <!--<td><button class="button" style="background-color: #b3b2ff;">x<sup>y</sup></button></td>-->
+              <!--<td><button class="button" style="background-color: #b3b2ff;"><sup>y</sup>√</button></td>-->
+              <td colspan="3"><button id="tan" style="font-size: 40px; background-color: #b3b2ff;" onclick="niceToHave('tan')">TAN</button></td>
+              <td colspan="2"><button class="zerobutton" style="background-color: #c6c6c6" onclick="insert(0)">0</button></td>
+              <td><button class="button numeric" onclick="insert('.')">.</button></td>
+              <td><button class="button darkpurp" onclick="equals()">=</button></td>
+            </tr>
+          </table>
+        </div>
       </div>
-      <div class="spaceadder"></div>
+
+
     </div>
   </body>
 </html>
